@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         String CL;
         while (true) {
-            System.out.print("Input command: > ");
+            entryPoint();
             CL = scanner.nextLine();
             if (CL.equals("exit")) return;
             if (checkCommandLine(CL)) break;
@@ -48,6 +48,20 @@ public class Main {
             default -> {
             }
         }
+    }
+
+    private static void entryPoint() {
+        System.out.print("""
+                Welcome in Tic Tac Toe Game!
+                The Game Have Three Level "Easy, Medium, and Hard"
+                and have 4 modes:
+                - User vs User
+                - User vs Computer
+                - Computer vs User
+                - Computer vs Computer
+                To Start The Game Enter "start" with
+                if User just enter 'user' else enter one of three level
+                Input command of Three word: >""");
     }
 
     private static boolean checkCommandLine(String CL) {
