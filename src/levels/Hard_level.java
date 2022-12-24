@@ -1,7 +1,5 @@
 package levels;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
 import static tictactoe.Checker.checkWinner;
 
 public class Hard_level {
@@ -9,19 +7,24 @@ public class Hard_level {
 
     public static int minimax(char[][] board, int depth, boolean isMaximize, boolean firstVisit) {
         int check_board = checkWinner(board);
+        // While Game not over if statement it is working
         if (check_board != 1 || depth == 0) {
             return check_board;
         }
+        int finalScore;
+        int finalI = 0;
+        int finalJ = 0;
         if (isMaximize) {
-            int finalScore = Integer.MIN_VALUE;
-            int finalI = 0;
-            int finalJ = 0;
+            finalScore = Integer.MIN_VALUE;
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (board[i][j] == ' ') {
-                        board[i][j] = 'X';  // Do
-                        int currentState = minimax(board, depth - 1, false, false); // Recursive
-                        board[i][j] = ' ';  // Undo
+                        // Do
+                        board[i][j] = 'X';
+                        // Recursive
+                        int currentState = minimax(board, depth - 1, false, false);
+                        // Undo
+                        board[i][j] = ' ';
                         if (finalScore < currentState) {
                             finalScore = currentState;
                             finalI = i;
@@ -30,20 +33,17 @@ public class Hard_level {
                     }
                 }
             }
-            if (firstVisit) {
-                board[finalI][finalJ] = maximizeChar;
-            }
-            return finalScore;
         } else {
-            int finalScore = Integer.MAX_VALUE;
-            int finalI = 0;
-            int finalJ = 0;
+            finalScore = Integer.MAX_VALUE;
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (board[i][j] == ' ') {
-                        board[i][j] = 'O'; // Do
-                        int currentState = minimax(board, depth - 1, true, false); // Recursive
-                        board[i][j] = ' '; // Undo
+                        // Do
+                        board[i][j] = 'O';
+                        // Recursive
+                        int currentState = minimax(board, depth - 1, true, false);
+                        // Undo
+                        board[i][j] = ' ';
                         if (finalScore > currentState) {
                             finalScore = currentState;
                             finalI = i;
@@ -52,11 +52,11 @@ public class Hard_level {
                     }
                 }
             }
-            if (firstVisit) {
-                board[finalI][finalJ] = maximizeChar;
-            }
-            return finalScore;
         }
+        if (firstVisit) {
+            board[finalI][finalJ] = maximizeChar;
+        }
+        return finalScore;
     }
 
     public static void setMaximizeChar(char maximizeChar) {

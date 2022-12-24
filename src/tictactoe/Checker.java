@@ -25,8 +25,7 @@ public class Checker {
                 || equality(board[0][2], board[1][1], board[2][0])) {
             return board[1][1] == 'X' ? 2 : -2;
         }
-
-        // Tie
+        // No one win
         for (char[] row : board) {
             for (char x : row) {
                 if (x == ' ') {
@@ -34,7 +33,7 @@ public class Checker {
                 }
             }
         }
-
+        // Tie
         return 0;
     }
 
